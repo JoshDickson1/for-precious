@@ -1,0 +1,22 @@
+project_id = "for-precious"
+
+[functions.subscribe]
+verify_jwt = false
+
+[functions.unsubscribe]
+verify_jwt = false
+
+[functions.submit-day-plan]
+verify_jwt = false
+
+[functions.submit-feelings]
+verify_jwt = false
+
+[functions.submit-answer]
+verify_jwt = false
+
+[functions.dispatch-daily-email]
+verify_jwt = false
+
+[functions.notes]
+verify_jwt = false
