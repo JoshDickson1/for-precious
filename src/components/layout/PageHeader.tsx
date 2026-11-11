@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { LilyMark } from "@/components/floral/Lily";
+import { Lily, LilyMark } from "@/components/floral/Lily";
 import { cn } from "@/lib/utils";
 
 export function PageHeader({
@@ -16,8 +16,15 @@ export function PageHeader({
   className?: string;
 }) {
   return (
-    <header className={cn("border-b border-line pb-10 pt-14 sm:pb-14 sm:pt-20", className)}>
-      <div className="flex flex-wrap items-end justify-between gap-8">
+    <header className={cn("relative border-b border-line pb-10 pt-14 sm:pb-14 sm:pt-20", className)}>
+      <Lily
+        size={180}
+        tone="line"
+        strokeWidth={2}
+        animated
+        className="pointer-events-none absolute -top-6 right-0 hidden h-40 w-40 -translate-y-2 translate-x-6 text-rose-soft/30 sm:block lg:h-48 lg:w-48"
+      />
+      <div className="relative flex flex-wrap items-end justify-between gap-8">
         <div className="max-w-2xl">
           <div className="mb-5 flex items-center gap-3 text-rose">
             <LilyMark className="h-4 w-4" />

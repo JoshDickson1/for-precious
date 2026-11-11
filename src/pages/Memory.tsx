@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { LilyDivider } from "@/components/floral/Lily";
+import { LilyGarland } from "@/components/floral/LilyGarland";
 import { Reveal } from "@/components/motion/Reveal";
 import { getMemory, publishedMemories } from "@/content/memories";
 import { memoryDate } from "@/lib/date";
@@ -53,7 +53,7 @@ export default function Memory() {
         </p>
       </header>
 
-      <LilyDivider className="mt-10" />
+      <LilyGarland className="mt-10" caption="read it slowly" />
 
       <div className="mx-auto mt-10 max-w-xl">
         <div className="space-y-6">

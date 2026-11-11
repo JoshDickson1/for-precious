@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { MemoryPlate } from "@/components/cards/MemoryCard";
-import { LilyDivider } from "@/components/floral/Lily";
+import { LilyGarland } from "@/components/floral/LilyGarland";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Reveal } from "@/components/motion/Reveal";
 import { buttonVariants } from "@/components/ui/button";
@@ -24,12 +24,17 @@ export default function Story() {
         title="Everything that led to you."
         intro="No dramatisation, no invented details. Just the parts I can point at — and a few I'm still writing down."
         aside={
-          <p className="font-display text-4xl italic text-rose-deep/80">
-            {String(publishedMemories.length).padStart(2, "0")}
-            <span className="ml-2 font-sans text-[0.6rem] uppercase tracking-[0.22em] text-ink-muted">
-              chapters
-            </span>
-          </p>
+          <div className="text-right">
+            <p className="font-display text-4xl italic text-rose-deep/80">
+              {String(publishedMemories.length).padStart(2, "0")}
+              <span className="ml-2 font-sans text-[0.6rem] uppercase tracking-[0.22em] text-ink-muted">
+                chapters
+              </span>
+            </p>
+            <p className="mt-1 font-script text-xl text-rose-soft/80">
+              and counting
+            </p>
+          </div>
         }
       />
 
@@ -85,7 +90,7 @@ export default function Story() {
 
       <Reveal className="mt-16">
         <div className="rounded-xl2 border border-line bg-surface p-7 text-center sm:p-10">
-          <LilyDivider />
+          <LilyGarland caption="every chapter, still you" />
           <h2 className="mt-6 font-display text-display-md text-balance text-ink">
             That's everything I've written down so far.
           </h2>

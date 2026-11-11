@@ -4,6 +4,7 @@ import { ChevronDown, ChevronLeft, Heart } from "lucide-react";
 import type { UnlockOrigin } from "@/components/layout/UnlockBloom";
 import { Input } from "@/components/ui/surface";
 import { checkPassphrase, gateConfigured, unlock } from "@/lib/gate";
+import { preloadGateHeart } from "@/lib/preloadGateHeart";
 
 const STEP_LABELS = ["For you", "The word"];
 const LINE_ONE_DELAY = 220;
@@ -158,6 +159,10 @@ export function Gate({
   const bodyDuration = bodyDelay + body.length * BODY_SPEED;
 
   useEffect(() => {
+    if (showForm) preloadGateHeart();
+  }, [showForm]);
+
+  useEffect(() => {
     if (!revealed) {
       setIntroDone(false);
       return;
@@ -289,7 +294,7 @@ export function Gate({
         </div>
       </div>
 
-      <section className="w-full max-w-[360px] text-center">
+      <section className="relative w-full max-w-[360px] text-center">
         <h1 className="text-left font-script text-[clamp(2.8rem,10vw,4.1rem)] leading-[1.15] text-ink">
           <span className="sr-only">
             {lineOne} {lineTwo}

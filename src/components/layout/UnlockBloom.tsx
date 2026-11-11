@@ -1,5 +1,7 @@
+import { useCallback, useState } from "react";
 import { Heart } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
+import { GateHeartLottie } from "./GateHeartLottie";
 
 export type UnlockOrigin = { x: number; y: number };
 export type UnlockPhase = "lift" | "beat" | "bloom" | "reveal";
@@ -12,6 +14,14 @@ export function UnlockBloom({
   phase: UnlockPhase;
 }) {
   const reduce = useReducedMotion() ?? false;
+  const [lottieReady, setLottieReady] = useState(false);
+  const [lottieFailed, setLottieFailed] = useState(false);
+  const handleLottieReady = useCallback(() => {
+    setLottieReady(true);
+    setLottieFailed(false);
+  }, []);
+  const handleLottieError = useCallback(() => setLottieFailed(true), []);
+
   const viewport =
     typeof window === "undefined"
       ? { innerWidth: 1440, innerHeight: 900 }
@@ -26,6 +36,9 @@ export function UnlockBloom({
 
   const bloom = phase === "bloom";
   const reveal = phase === "reveal";
+  // The animation is the flying element: it pops out of the input field on
+  // submit and keeps playing as it travels to the centre.
+  const showLottie = lottieReady && !lottieFailed;
 
   return (
     <div
@@ -88,7 +101,7 @@ export function UnlockBloom({
                   ? {
                       x: dx,
                       y: dy,
-                      scale: [1, 1.18, 1, 1.18, 1, 1.24],
+                      scale: 1,
                       opacity: 1,
                     }
                   : { x: dx, y: dy, scale: 2.3, opacity: 0 }
@@ -101,16 +114,23 @@ export function UnlockBloom({
                     ease: [0.45, 0, 0.55, 1],
                   }
                 : phase === "beat"
-                  ? {
-                      duration: 1.4,
-                      times: [0, 0.18, 0.36, 0.54, 0.72, 1],
-                      ease: "easeInOut",
-                    }
+                  ? { duration: 1.4, ease: "easeInOut" }
                   : { duration: 0.7, ease: [0.4, 0, 0.2, 1] }
             }
-            className="absolute left-0 top-0 -ml-8 -mt-8 flex h-16 w-16 items-center justify-center text-on-accent drop-shadow-[0_0_22px_rgba(255,46,154,0.9)]"
+            className="absolute left-0 top-0 -ml-8 -mt-8 flex h-16 w-16 items-center justify-center text-on-accent"
           >
-            <Heart className="h-16 w-16 fill-current" strokeWidth={0.9} />
+            <Heart
+              className={`h-16 w-16 fill-current drop-shadow-[0_0_22px_rgba(255,46,154,0.9)] transition-opacity duration-200 ${
+                lottieFailed ? "opacity-100" : "opacity-0"
+              }`}
+              strokeWidth={0.9}
+            />
+            <GateHeartLottie
+              visible={showLottie}
+              onReady={handleLottieReady}
+              onError={handleLottieError}
+              className="h-40 w-40 sm:h-52 sm:w-52"
+            />
           </motion.div>
         </div>
       )}

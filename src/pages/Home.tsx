@@ -14,7 +14,9 @@ import { EmailSignup } from "@/components/EmailSignup";
 import { MusicPlayer } from "@/components/MusicPlayer";
 import { PerspectiveCta } from "@/components/PerspectiveCta";
 import { MemoryCard } from "@/components/cards/MemoryCard";
-import { Lily, LilyDivider } from "@/components/floral/Lily";
+import { FlowerVideo } from "@/components/floral/FlowerVideo";
+import { Lily } from "@/components/floral/Lily";
+import { LilyGarland } from "@/components/floral/LilyGarland";
 import { FadeIn, Reveal } from "@/components/motion/Reveal";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, Chip } from "@/components/ui/surface";
@@ -81,7 +83,7 @@ export default function Home() {
   return (
     <div>
       <section className="relative overflow-hidden pb-16 pt-12 sm:pb-24 sm:pt-16">
-        <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="relative grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <FadeIn delay={0.05}>
               <div className="flex flex-wrap items-center gap-3">
@@ -148,7 +150,14 @@ export default function Home() {
               <p className="relative text-center font-sans text-[0.6rem] uppercase tracking-[0.28em] text-ink-muted">
                 since the ninth of October
               </p>
-              <Lily size={280} className="relative mx-auto mt-6" />
+              <p className="relative mt-2 text-center font-script text-2xl text-rose-soft">
+                for you, always
+              </p>
+              <Lily
+                size={252}
+                animated
+                className="relative mx-auto mt-5 h-auto w-[204px] sm:w-[252px]"
+              />
             </div>
 
             <div className="absolute -bottom-7 -left-4 w-[190px] rotate-[-3deg] rounded-xl2 border border-line bg-surface/95 p-4 shadow-soft backdrop-blur sm:-left-8">
@@ -165,6 +174,25 @@ export default function Home() {
           </FadeIn>
         </div>
       </section>
+
+      <Reveal className="mt-2">
+        <section className="relative flex min-h-[340px] items-center overflow-hidden rounded-xl2 border border-line bg-surface sm:min-h-[420px]">
+          <FlowerVideo
+            opacity={0.52}
+            objectPosition="50% 44%"
+            mask="radial-gradient(ellipse at 50% 50%, black 0%, black 38%, transparent 76%)"
+          />
+          <div className="relative w-full px-6 py-16 text-center sm:py-20">
+            <p className="eyebrow">In bloom</p>
+            <p className="mx-auto mt-4 max-w-xl font-display text-[clamp(1.9rem,5vw,3rem)] italic leading-tight text-ink">
+              Everything reminds me of you.
+            </p>
+            <p className="mt-3 font-script text-2xl text-rose-soft sm:text-3xl">
+              even the flowers
+            </p>
+          </div>
+        </section>
+      </Reveal>
 
       <Reveal>
         <section id="today" className="scroll-mt-24">
@@ -347,7 +375,7 @@ export default function Home() {
 
       <Reveal className="mt-20">
         <div className="text-center">
-          <LilyDivider />
+          <LilyGarland caption="still, always, you" />
           <p className="mx-auto mt-6 max-w-md font-display text-2xl italic leading-snug text-ink sm:text-[1.7rem]">
             “You're my favourite notification, {site.her.name}.”
           </p>
